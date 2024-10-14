@@ -10,11 +10,13 @@ import Layout from "../layouts/Layout.astro"
 
 <script>
   import p5 from "p5"
-  // P5.js sketch tanımı
+
   const sketch = (p: p5) => {
     p.setup = () => {
-      let canvas = p.createCanvas(window.innerWidth, window.innerHeight)
-      canvas.style("z-index", "-1")
+      let canvas = p.createCanvas(p.windowWidth, p.windowHeight)
+      canvas.position(0, 0) // Canvas'ı sol üst köşeye sabitler
+      canvas.style("z-index", "-1") // Canvas'ı arkada tutar
+      canvas.style("position", "fixed") // Canvas tam ekran ve sabit olacak
 
       p.background(200) // Gri arka plan
     }
@@ -24,8 +26,11 @@ import Layout from "../layouts/Layout.astro"
       p.fill(255, 0, 0)
       p.ellipse(p.mouseX, p.mouseY, 80, 80) // Fareyi takip eden kırmızı daire
     }
+
+    p.windowResized = () => {
+      p.resizeCanvas(p.windowWidth, p.windowHeight)
+    }
   }
 
-  // P5'i başlatmak için bir nesne oluştur
   new p5(sketch)
 </script>
