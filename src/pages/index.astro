@@ -2,13 +2,11 @@
 import Layout from "../layouts/Layout.astro"
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Home">
   <main class="grid place-content-center h-screen">
     <h1 class="font-bold text-5xl">Welcome</h1>
   </main>
 </Layout>
-
-<style></style>
 
 <script>
   import p5 from "p5"
@@ -17,7 +15,7 @@ import Layout from "../layouts/Layout.astro"
     p.setup = () => {
       let canvas = p.createCanvas(window.innerWidth, window.innerHeight)
       canvas.style("z-index", "-1")
-      
+
       p.background(200) // Gri arka plan
     }
 
