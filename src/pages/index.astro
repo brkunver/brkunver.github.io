@@ -9,3 +9,25 @@ import Layout from "../layouts/Layout.astro"
 </Layout>
 
 <style></style>
+
+<script>
+  import p5 from "p5"
+  // P5.js sketch tanımı
+  const sketch = (p: p5) => {
+    p.setup = () => {
+      let canvas = p.createCanvas(window.innerWidth, window.innerHeight)
+      canvas.style("z-index", "-1")
+      
+      p.background(200) // Gri arka plan
+    }
+
+    p.draw = () => {
+      p.clear() // Şeffaf arka plan
+      p.fill(255, 0, 0)
+      p.ellipse(p.mouseX, p.mouseY, 80, 80) // Fareyi takip eden kırmızı daire
+    }
+  }
+
+  // P5'i başlatmak için bir nesne oluştur
+  new p5(sketch)
+</script>
