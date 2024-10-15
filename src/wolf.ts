@@ -68,6 +68,9 @@ class Wolf {
     "assets/wolf/downright/dr5.png",
   ]
 
+  idle_up_sprite_path: string = "assets/wolf/idle/idleup.png"
+  idle_down_sprite_path : string = "assets/wolf/idle/idledown.png"
+
   direction: "u" | "d" | "l" | "r" | "ul" | "ur" | "dl" | "dr" | "idle" = "idle"
   isMoving: boolean = false
 
@@ -79,6 +82,9 @@ class Wolf {
   uprightSpriteImages: Array<p5.Image> = []
   downleftSpriteImages: Array<p5.Image> = []
   downrightSpriteImages: Array<p5.Image> = []
+
+  idleUpSprite: p5.Image
+  idleDownSprite : p5.Image
 
   frameIndex: number = 0
   frameDelay: number = 5
@@ -119,6 +125,9 @@ class Wolf {
     this.downright_sprites_paths.forEach((path) => {
       this.downrightSpriteImages.push(this.p5.loadImage(path))
     })
+
+    this.idleUpSprite = this.p5.loadImage(this.idle_up_sprite_path)
+    this.idleDownSprite = this.p5.loadImage(this.idle_down_sprite_path)
   }
 
   draw() {
@@ -137,16 +146,22 @@ class Wolf {
       spriteImages = this.downleftSpriteImages
     } else if (this.direction === "dr") {
       spriteImages = this.downrightSpriteImages
+    } else if (this.direction === "idle") {
+      spriteImages = [this.idleDownSprite]
     }
 
-    if (this.frameCounter % this.frameDelay === 0) {
-      // Sonraki sprite'a geç
-      this.frameIndex = (this.frameIndex + 1) % spriteImages.length
-    }
-    this.frameCounter++
+    if (!this.isMoving) {
+      this.p5.image(spriteImages[0], this.position.x, this.position.y, 48, 48)
+    } else {
+      if (this.frameCounter % this.frameDelay === 0) {
+        // Sonraki sprite'a geç
+        this.frameIndex = (this.frameIndex + 1) % spriteImages.length
+      }
+      this.frameCounter++
 
-    // Mevcut sprite'ı çiz
-    this.p5.image(spriteImages[this.frameIndex], this.position.x, this.position.y, 48, 48)
+      // Mevcut sprite'ı çiz
+      this.p5.image(spriteImages[this.frameIndex], this.position.x -24, this.position.y, 48, 48)
+    }
   }
 }
 
