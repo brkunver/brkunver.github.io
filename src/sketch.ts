@@ -16,9 +16,34 @@ const sketch = (p: p5) => {
 
   p.draw = () => {
     p.clear()
-    p.fill(0, 100, 100)
-    p.ellipse(p.mouseX, p.mouseY, 80, 80)
+
+    // calculate the distance between the mouse and wolf's position
+    let distanceX = Math.abs(p.mouseX - wolf.position.x)
+    let distanceY = Math.abs(p.mouseY - wolf.position.y)
+
+    
+    if (distanceX > 48 || distanceY > 48) {
+      wolf.isMoving = true
+      if (distanceX > 48 && distanceY < 48) {
+        if (p.mouseX > wolf.position.x) {
+          wolf.direction = "r"
+          wolf.position.x += 1
+        } else if (p.mouseX < wolf.position.x) {
+          wolf.direction = "l"
+          wolf.position.x -= 1
+        }
+      }
+    }
+
+    // wolf is not moving
+    else {
+      wolf.direction = "idle"
+      wolf.isMoving = false
+    }
+
     wolf.draw()
+    console.log("distance x => " , distanceX)
+    console.log("distance y => " , distanceY)
   }
 
   p.windowResized = () => {
