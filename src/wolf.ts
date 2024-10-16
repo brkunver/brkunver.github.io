@@ -1,7 +1,7 @@
 import p5 from "p5"
 
 class Wolf {
-  p5: p5
+  p: p5
   position: p5.Vector
   down_sprites_paths: Array<string> = [
     "assets/wolf/down/d0.png",
@@ -69,7 +69,7 @@ class Wolf {
   ]
 
   idle_up_sprite_path: string = "assets/wolf/idle/idleup.png"
-  idle_down_sprite_path : string = "assets/wolf/idle/idledown.png"
+  idle_down_sprite_path: string = "assets/wolf/idle/idledown.png"
 
   direction: "u" | "d" | "l" | "r" | "ul" | "ur" | "dl" | "dr" | "idle" = "idle"
   isMoving: boolean = false
@@ -84,54 +84,55 @@ class Wolf {
   downrightSpriteImages: Array<p5.Image> = []
 
   idleUpSprite: p5.Image
-  idleDownSprite : p5.Image
+  idleDownSprite: p5.Image
 
   frameIndex: number = 0
   frameDelay: number = 5
   frameCounter: number = 0
 
-  constructor(p5: p5, position: p5.Vector) {
-    this.p5 = p5
+  constructor(p: p5, position: p5.Vector) {
+    this.p = p
     this.position = position
 
     this.down_sprites_paths.forEach((path) => {
-      this.downSpriteImages.push(this.p5.loadImage(path))
+      this.downSpriteImages.push(this.p.loadImage(path))
     })
 
     this.up_sprites_paths.forEach((path) => {
-      this.upSpriteImages.push(this.p5.loadImage(path))
+      this.upSpriteImages.push(this.p.loadImage(path))
     })
 
     this.left_sprites_paths.forEach((path) => {
-      this.leftSpriteImages.push(this.p5.loadImage(path))
+      this.leftSpriteImages.push(this.p.loadImage(path))
     })
 
     this.right_sprites_paths.forEach((path) => {
-      this.rightSpriteImages.push(this.p5.loadImage(path))
+      this.rightSpriteImages.push(this.p.loadImage(path))
     })
 
     this.upleft_sprites_paths.forEach((path) => {
-      this.upleftSpriteImages.push(this.p5.loadImage(path))
+      this.upleftSpriteImages.push(this.p.loadImage(path))
     })
 
     this.upright_sprites_paths.forEach((path) => {
-      this.uprightSpriteImages.push(this.p5.loadImage(path))
+      this.uprightSpriteImages.push(this.p.loadImage(path))
     })
 
     this.downleft_sprites_paths.forEach((path) => {
-      this.downleftSpriteImages.push(this.p5.loadImage(path))
+      this.downleftSpriteImages.push(this.p.loadImage(path))
     })
 
     this.downright_sprites_paths.forEach((path) => {
-      this.downrightSpriteImages.push(this.p5.loadImage(path))
+      this.downrightSpriteImages.push(this.p.loadImage(path))
     })
 
-    this.idleUpSprite = this.p5.loadImage(this.idle_up_sprite_path)
-    this.idleDownSprite = this.p5.loadImage(this.idle_down_sprite_path)
+    this.idleUpSprite = this.p.loadImage(this.idle_up_sprite_path)
+    this.idleDownSprite = this.p.loadImage(this.idle_down_sprite_path)
   }
 
   draw() {
     let spriteImages = this.downSpriteImages
+    this.p.imageMode(this.p.CENTER)
     if (this.direction === "u") {
       spriteImages = this.upSpriteImages
     } else if (this.direction === "l") {
@@ -151,7 +152,7 @@ class Wolf {
     }
 
     if (!this.isMoving) {
-      this.p5.image(spriteImages[0], this.position.x, this.position.y, 48, 48)
+      this.p.image(spriteImages[0], this.position.x, this.position.y, 48, 48)
     } else {
       if (this.frameCounter % this.frameDelay === 0) {
         // Sonraki sprite'a geç
@@ -160,7 +161,7 @@ class Wolf {
       this.frameCounter++
 
       // Mevcut sprite'ı çiz
-      this.p5.image(spriteImages[this.frameIndex], this.position.x -24, this.position.y, 48, 48)
+      this.p.image(spriteImages[this.frameIndex], this.position.x - 24, this.position.y, 48, 48)
     }
   }
 }
