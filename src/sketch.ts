@@ -1,6 +1,8 @@
 import p5 from "p5"
 import Wolf from "./wolf"
 
+const margin = 32
+
 const sketch = (p: p5) => {
   let wolf: Wolf
 
@@ -21,19 +23,63 @@ const sketch = (p: p5) => {
     let distanceX = Math.abs(p.mouseX - wolf.position.x)
     let distanceY = Math.abs(p.mouseY - wolf.position.y)
 
-    
-    if (distanceX > 48 || distanceY > 48) {
-      wolf.isMoving = true
-      if (distanceX > 48 && distanceY < 48) {
-        if (p.mouseX > wolf.position.x) {
+    if (distanceX > margin || distanceY > margin) {
+      if (p.mouseX > wolf.position.x + margin) {
+        wolf.isMoving = true
+        // right down movement
+        if (p.mouseY > wolf.position.y + margin) {
+          wolf.direction = "dr"
+          wolf.position.x += 2
+          wolf.position.y += 2
+        }
+        // right up movement
+        else if (p.mouseY < wolf.position.y - margin) {
+          wolf.direction = "ur"
+          wolf.position.x += 2
+          wolf.position.y -= 2
+        } else {
           wolf.direction = "r"
-          wolf.position.x += 1
-        } else if (p.mouseX < wolf.position.x) {
+          wolf.position.x += 2
+        }
+      }
+
+      // check left movement
+      else if (p.mouseX < wolf.position.x - margin) {
+        wolf.isMoving = true
+
+        // left down movement
+        if (p.mouseY > wolf.position.y + margin) {
+          wolf.direction = "dl"
+          wolf.position.x -= 2
+          wolf.position.y += 2
+        }
+        // left up movement
+        else if (p.mouseY < wolf.position.y - margin) {
+          wolf.direction = "ul"
+          wolf.position.x -= 2
+          wolf.position.y -= 2
+        } else {
           wolf.direction = "l"
-          wolf.position.x -= 1
+          wolf.position.x -= 2
+        }
+      }
+
+      // up movement
+      else if (p.mouseX < wolf.position.x + margin && p.mouseX > wolf.position.x - margin) {
+        if (p.mouseY < wolf.position.y - margin) {
+          wolf.isMoving = true
+          wolf.direction = "u"
+          wolf.position.y -= 2
+        }
+        // down movement
+        else if (p.mouseY > wolf.position.y + margin) {
+          wolf.isMoving = true
+          wolf.direction = "d"
+          wolf.position.y += 2
         }
       }
     }
+    // down movement
 
     // wolf is not moving
     else {
@@ -42,8 +88,8 @@ const sketch = (p: p5) => {
     }
 
     wolf.draw()
-    console.log("distance x => " , distanceX)
-    console.log("distance y => " , distanceY)
+    console.log("distance x => ", distanceX)
+    console.log("distance y => ", distanceY)
   }
 
   p.windowResized = () => {
