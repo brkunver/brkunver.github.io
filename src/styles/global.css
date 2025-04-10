@@ -1,9 +1,9 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: 'Inter Variable', 'sans-serif';
+  --font-main: 'JetBrains Mono Variable', 'monospace';
 }
 
 body {
-  font-family: 'Inter Variable', sans-serif;
+  font-family: 'JetBrains Mono Variable', monospace;
 }

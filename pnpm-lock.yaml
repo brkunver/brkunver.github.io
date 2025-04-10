@@ -11,7 +11,7 @@ importers:
       '@astrojs/check':
         specifier: ^0.9.4
         version: 0.9.4(typescript@5.4.5)
-      '@fontsource-variable/inter':
+      '@fontsource-variable/jetbrains-mono':
         specifier: ^5.2.5
         version: 5.2.5
       '@tailwindcss/vite':
@@ -265,8 +265,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@fontsource-variable/inter@5.2.5':
-    resolution: {integrity: sha512-TrWffUAFOnT8zroE9YmGybagoOgM/HjRqMQ8k9R0vVgXlnUh/vnpbGPAS/Caz1KIlOPnPGh6fvJbb7DHbFCncA==}
+  '@fontsource-variable/jetbrains-mono@5.2.5':
+    resolution: {integrity: sha512-G3sN1xq1moZd0JL+hFaA4MEdsiQS+JXC/z7m+EqA5/Fzn5CQlXGUaaNKFGQdDsFuLTnCfW0KOOSWHjygNfjEPw==}
 
   '@img/sharp-darwin-arm64@0.33.4':
     resolution: {integrity: sha512-p0suNqXufJs9t3RqLBO6vvrgr5OhgbWp76s5gTRvdmxmuv9E1rcaqGUsl3l4mKVmXPkTkTErXediAui4x+8PSA==}
@@ -2093,7 +2093,7 @@ snapshots:
   '@esbuild/win32-x64@0.25.2':
     optional: true
 
-  '@fontsource-variable/inter@5.2.5': {}
+  '@fontsource-variable/jetbrains-mono@5.2.5': {}
 
   '@img/sharp-darwin-arm64@0.33.4':
     optionalDependencies:
