@@ -79,7 +79,6 @@ const sketch = (p: p5) => {
         }
       }
     }
-    // down movement
 
     // wolf is not moving
     else {

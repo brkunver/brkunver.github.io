@@ -155,12 +155,11 @@ class Wolf {
       this.p.image(spriteImages[0], this.position.x, this.position.y, 48, 48)
     } else {
       if (this.frameCounter % this.frameDelay === 0) {
-        // Sonraki sprite'a geç
+        
         this.frameIndex = (this.frameIndex + 1) % spriteImages.length
       }
       this.frameCounter++
 
-      // Mevcut sprite'ı çiz
       this.p.image(spriteImages[this.frameIndex], this.position.x - 24, this.position.y, 48, 48)
     }
   }
