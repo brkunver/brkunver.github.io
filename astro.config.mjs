@@ -8,7 +8,6 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://kunver.dev",
   integrations: [sitemap()],
-  prefetch: true,
   vite: {
     plugins: [tailwindcss()],
   },
