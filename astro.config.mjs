@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://brkunver.github.io",
+  site: "https://kunver.dev",
   integrations: [sitemap()],
   prefetch: true,
   vite: {
