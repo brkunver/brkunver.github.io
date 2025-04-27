@@ -7,7 +7,7 @@ set -e
 git checkout master
 
 # Merge the dev branch into main
-git merge development
+git merge development -m "Merge development into master"
 if [ $? -ne 0 ]; then
     echo "❌ Merge conflict occurred. Please resolve it manually."
     exit 1
