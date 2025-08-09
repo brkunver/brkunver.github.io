@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro"
-
 ---
 <Layout title="Wolf">
   <main class="flex flex-col flex-grow items-center">
@@ -9,27 +8,25 @@ import Layout from "../layouts/Layout.astro"
         <p>Wolf is <span class="font-bold underline" id="wolfStatus">Active</span></p>
         <button id="toggleWolfButton">Toggle Wolf</button>
     </div>
-    <button id="applyButton">Apply & Refresh Page</button>
   </main>
 </Layout>
 
 
 <script>
-    let isWolfActive = localStorage.getItem("isWolfActive") === "true"
+    import { createLocalStorageObserver } from "../utils/storageObserver"
+    const wolfStatusObserver = createLocalStorageObserver<boolean>("isWolfActive")
 
     const wolfStatus = document.getElementById("wolfStatus") as HTMLSpanElement
     const toggleWolfButton = document.getElementById("toggleWolfButton") as HTMLButtonElement
-    const applyButton = document.getElementById("applyButton") as HTMLButtonElement
 
-    wolfStatus.textContent = isWolfActive ? "Active" : "Inactive"
+    wolfStatusObserver.subscribe((value) => {
+        wolfStatus.textContent = value ? "Active" : "Inactive"
+        // change color of wolfStatus span
+        wolfStatus.style.color = value ? "green" : "yellow"
+    })
 
     toggleWolfButton.addEventListener("click", () => {
-        isWolfActive = !isWolfActive
-        localStorage.setItem("isWolfActive", isWolfActive.toString())
-        wolfStatus.textContent = isWolfActive ? "Active" : "Inactive"
+        wolfStatusObserver.set(!wolfStatusObserver.get())
     })
 
-    applyButton.addEventListener("click", () => {
-        location.reload()
-    })
 </script>
