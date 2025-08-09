@@ -13,3 +13,11 @@
 body {
   font-family: 'JetBrains Mono Variable', monospace;
 }
+
+button {
+  @apply border border-color-border p-2 rounded-md hover:bg-color-border  
+}
+
+button:hover {
+  cursor: pointer;
+}
