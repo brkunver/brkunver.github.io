@@ -14,16 +14,17 @@ const { title, type, description, image, url, alt } = Astro.props
 ---
 
 <div
-  class="flex flex-col items-center gap-4 rounded-lg border border-color-border bg-card p-4 shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl md:max-w-[500px] w-fit"
+  class="flex flex-col items-center justify-between gap-4 rounded-lg border border-color-border bg-card p-4 shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl md:max-w-[500px]"
 >
+<div class="flex flex-col items-center gap-4">
   <div class="flex flex-col text-center">
     <h3 class="font-bold text-2xl">{title}</h3>
     <p class="italic text-muted -mt-1">{type}</p>
   </div>
 
   <Image src={image || PlaceholderImage} alt={alt} class="rounded-lg h-[140px] w-[220px] object-cover md:h-[280px] md:w-[440px]" />
-
-  
   <p class="font-secondary w-full text-left">{description}</p>
-  {url && <a href={url} class="text-secondary hover:underline">Read More</a>}
+</div>
+  
+{url && <a href={url} class="text-secondary hover:underline">Read More</a>}
 </div>
