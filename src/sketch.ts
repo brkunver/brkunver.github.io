@@ -4,6 +4,10 @@ import { createLocalStorageObserver } from "./utils/storageObserver"
 
 const wolfStatus = createLocalStorageObserver<boolean>("isWolfActive")
 const margin = 32
+const currentWolfStatus = wolfStatus.get()
+if (currentWolfStatus == null) {
+  wolfStatus.set(true)
+}
 
 let wolfInstance: p5 | null = null
 
