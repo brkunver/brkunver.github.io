@@ -2,6 +2,8 @@ import p5 from "p5"
 import Wolf from "./wolf"
 
 const margin = 32
+const wolfStatus = localStorage.getItem("isWolfActive")
+let isWolfActive : boolean = wolfStatus === "true"
 
 const sketch = (p: p5) => {
   let wolf: Wolf
@@ -95,4 +97,6 @@ const sketch = (p: p5) => {
   }
 }
 
+if (isWolfActive) {
 new p5(sketch)
+}
