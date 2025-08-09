@@ -1,20 +1,26 @@
 ---
 import { Image } from 'astro:assets'
+import PlaceholderImage from "../images/project/placeholder.png"
 interface Props {
   title: string
   type: string
   description: string
-  image: any
+  image?: any
   alt: string
 }
 
 const { title, type, description, image, alt } = Astro.props
 ---
 
+<div
+  class="flex flex-col items-center gap-4 rounded-lg border border-color-border bg-card p-4 shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl md:max-w-[500px] w-fit"
+>
+  <div class="text-center">
+    <h3 class="font-bold text-2xl">{title}</h3>
+    <p class="italic text-muted -mt-1">{type}</p>
+  </div>
 
-<div class="flex flex-col justify-center items-center bg-card border-color-border rounded-lg shadow-lg p-2 w-fit md:max-w-[500px]">
-    <h3 class="font-bold text-2xl text-center" >{title}</h3>
-    <p class="text-center italic text-muted">{type}</p>
-    <Image src={image} alt={alt} class="rounded-lg w-[220px] h-[140px] md:w-[440px] md:h-[280px] object-cover" />
-    <p class="font-secondary">{description}</p>
+  <Image src={image || PlaceholderImage} alt={alt} class="rounded-lg h-[140px] w-[220px] object-cover md:h-[280px] md:w-[440px]" />
+
+  <p class="font-secondary w-full text-left">{description}</p>
 </div>
