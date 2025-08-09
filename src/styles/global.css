@@ -2,6 +2,12 @@
 
 @theme {
   --font-main: 'JetBrains Mono Variable', 'monospace';
+  --font-secondary: 'Inter Variable', 'sans-serif';
+  --color-primary: #121212;
+  --color-secondary: #E0E0E0;
+  --color-muted: #757575;
+  --color-card: #1F1F1F;
+  --color-color-border: #2A2A2A;
 }
 
 body {
