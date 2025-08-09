@@ -9,8 +9,9 @@ const sketch = (p: p5) => {
   p.setup = () => {
     let canvas = p.createCanvas(p.windowWidth, p.windowHeight)
     canvas.position(0, 0)
-    canvas.style("z-index", "-1")
+    canvas.style("z-index", "9999")
     canvas.style("position", "fixed")
+    canvas.style("pointer-events", "none")
 
     wolf = new Wolf(p, p.createVector(p.width / 2, p.height / 2))
     p.frameRate(60)
