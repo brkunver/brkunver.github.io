@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro"
+
+---
+<Layout title="Wolf">
+  <main class="flex flex-col flex-grow items-center">
+    <h1 class="font-bold text-5xl self-center text-center">Wolf Settings</h1>
+    <div class="flex gap-2">
+        <p>Wolf is <span class="font-bold underline" id="wolfStatus">Active</span></p>
+        <button id="toggleWolfButton">Toggle Wolf</button>
+    </div>
+    <button id="applyButton">Apply & Refresh Page</button>
+  </main>
+</Layout>
+
+
+<script>
+    let isWolfActive = localStorage.getItem("isWolfActive") === "true"
+
+    const wolfStatus = document.getElementById("wolfStatus") as HTMLSpanElement
+    const toggleWolfButton = document.getElementById("toggleWolfButton") as HTMLButtonElement
+    const applyButton = document.getElementById("applyButton") as HTMLButtonElement
+
+    wolfStatus.textContent = isWolfActive ? "Active" : "Inactive"
+
+    toggleWolfButton.addEventListener("click", () => {
+        isWolfActive = !isWolfActive
+        localStorage.setItem("isWolfActive", isWolfActive.toString())
+        wolfStatus.textContent = isWolfActive ? "Active" : "Inactive"
+    })
+
+    applyButton.addEventListener("click", () => {
+        location.reload()
+    })
+</script>
