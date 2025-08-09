@@ -87,8 +87,6 @@ const sketch = (p: p5) => {
     }
 
     wolf.draw()
-    console.log("distance x => ", distanceX)
-    console.log("distance y => ", distanceY)
   }
 
   p.windowResized = () => {
