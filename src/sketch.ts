@@ -13,7 +13,7 @@ const sketch = (p: p5) => {
     canvas.style("position", "fixed")
     canvas.style("pointer-events", "none")
 
-    wolf = new Wolf(p, p.createVector(p.width / 2, p.height / 2))
+    wolf = new Wolf(p, p.createVector(p.random(10, p.width - 10), p.random(10, p.height - 10)))
     p.frameRate(60)
   }
 
